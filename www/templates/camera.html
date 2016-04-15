@@ -1,0 +1,59 @@
+<ion-view view-title="CloudVision test">
+  <ion-content class="padding">
+
+    <p ng-show="loading">{{loading}}</p>
+    <button ng-click="callCamera('photo')">写真を撮る</button>
+    <button ng-click="callCamera('library')">写真を選ぶ</button>
+
+    <hr />
+
+    <ion-list class="list card">
+      <ion-item class="item item-body">
+        <div ng-show="results.labelAnnotations">
+          <h2>labelAnnotations</h2>
+          <ul ng-repeat="label in results.labelAnnotations">
+            <li>{{label.score}} : {{label.description}}</li>
+          </ul>
+        </div>
+
+        <div ng-show="results.textAnnotations">
+          <h2>textAnnotations</h2>
+          <p>{{results.textAnnotations.description}}</p>
+        </div>
+
+        <div ng-show="results.landmarkAnnotations">
+          <h2>landmarkAnnotations</h2>
+          <ul ng-repeat="items in results.landmarkAnnotations">
+            <li>{{items.description}}
+              <ul ng-repeat="loc in items.locations">
+                {{loc.latLng.latitude}} / {{loc.latLng.longitude}} : <a href="https://www.google.co.jp/maps/@{{loc.latLng.latitude}},{{loc.latLng.longitude}},15z">Google Map</a>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div ng-show="results.faceAnnotations">
+          <h2>faceAnnotations</h2>
+          <dl ng-repeat="(key,value) in results.faceAnnotations">
+            <dt>{{key}}</dt>
+            <dd>{{value}}</dd>
+          </dl>
+        </div>
+
+        <div ng-show="results.safeSearchAnnotation">
+          <h2>safeSearchAnnotation</h2>
+          <dl ng-repeat="(key,value) in results.safeSearchAnnotation">
+            <dt>{{key}}</dt>
+            <dd>{{value}}</dd>
+          </dl>
+        </div>
+
+        <img class="full-image" src="{{imageSource}}" ng-show="imageSource">
+        <p ng-show="results">{{results}}</p>
+
+      </ion-item>
+
+    </ion-list>
+
+  </ion-content>
+</ion-view>

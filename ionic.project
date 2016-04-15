@@ -1,0 +1,11 @@
+{
+  "name": "CloudVision",
+  "app_id": "e1d29f84",
+  "browsers": [
+    {
+      "platform": "android",
+      "browser": "crosswalk",
+      "version": "12.41.296.5"
+    }
+  ]
+}
